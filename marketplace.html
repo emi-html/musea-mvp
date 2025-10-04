@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace - Musea</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body { 
+            background: linear-gradient(135deg, #f5f0e6, #efe7da); 
+            min-height: 100vh; 
+            margin: 0; 
+            font-family: 'Poppins', sans-serif; 
+        }
+        
+        .header {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Ananda Black', cursive;
+            font-size: 32px;
+            color: #8b5e3c;
+            text-decoration: none;
+        }
+        
+        .search-bar {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 40px;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e5e5;
+            border-radius: 25px;
+            font-size: 16px;
+            background: #f9f9f9;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #8b5e3c;
+            background: white;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            color: #8b5e3c;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            background: #8b5e3c;
+            color: white;
+        }
+        
+        .filters-container {
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 1200px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .filter-section {
+            margin-bottom: 25px;
+        }
+        
+        .filter-title {
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        
+        .filter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .filter-tag {
+            background: #f5f5f5;
+            border: 2px solid #e5e5e5;
+            color: #666;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .filter-tag:hover {
+            background: #8b5e3c;
+            color: white;
+            border-color: #8b5e3c;
+        }
+        
+        .filter-tag.active {
+            background: #8b5e3c;
+            color: white;
+            border-color: #8b5e3c;
+        }
+        
+        .price-range {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .price-input {
+            width: 120px;
+            padding: 8px 12px;
+            border: 2px solid #e5e5e5;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        .price-input:focus {
+            outline: none;
+            border-color: #8b5e3c;
+        }
+        
+        .marketplace-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .art-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .art-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .art-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        .art-info {
+            padding: 15px;
+        }
+        
+        .art-title {
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        
+        .art-artist {
+            color: #666;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .art-price {
+            font-weight: 700;
+            color: #8b5e3c;
+            font-size: 18px;
+        }
+        
+        .art-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: 8px;
+        }
+        
+        .art-tag {
+            background: #f0f0f0;
+            color: #666;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+        }
+        
+        .buy-button {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            right: 15px;
+            background: #8b5e3c;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .art-card:hover .buy-button {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .clear-filters {
+            background: #f5f5f5;
+            color: #666;
+            border: 2px solid #e5e5e5;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .clear-filters:hover {
+            background: #e5e5e5;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <a href="artist-main-choice.html" class="logo">Musea</a>
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Search for art, artists, or styles...">
+            </div>
+            <div class="nav-links">
+                <a href="artist-main-choice.html">Dashboard</a>
+                <a href="upload-art.html">Sell Art</a>
+                <a href="#">Profile</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="filters-container">
+        <div class="filter-section">
+            <div class="filter-title">Style & Medium</div>
+            <div class="filter-tags">
+                <div class="filter-tag">Oil</div>
+                <div class="filter-tag">Acrylic</div>
+                <div class="filter-tag">Watercolor</div>
+                <div class="filter-tag">Digital</div>
+                <div class="filter-tag">Sculpture</div>
+                <div class="filter-tag">Photography</div>
+                <div class="filter-tag">Mixed Media</div>
+                <div class="filter-tag">Abstract</div>
+                <div class="filter-tag">Realistic</div>
+                <div class="filter-tag">Impressionist</div>
+            </div>
+        </div>
+        
+        <div class="filter-section">
+            <div class="filter-title">Mood & Color</div>
+            <div class="filter-tags">
+                <div class="filter-tag">Warm</div>
+                <div class="filter-tag">Cool</div>
+                <div class="filter-tag">Vibrant</div>
+                <div class="filter-tag">Muted</div>
+                <div class="filter-tag">Bright</div>
+                <div class="filter-tag">Dark</div>
+                <div class="filter-tag">Pastel</div>
+                <div class="filter-tag">Bold</div>
+                <div class="filter-tag">Neutral</div>
+                <div class="filter-tag">Colorful</div>
+            </div>
+        </div>
+        
+        <div class="filter-section">
+            <div class="filter-title">Subject & Theme</div>
+            <div class="filter-tags">
+                <div class="filter-tag">Landscape</div>
+                <div class="filter-tag">Portrait</div>
+                <div class="filter-tag">Nature</div>
+                <div class="filter-tag">Urban</div>
+                <div class="filter-tag">Beach</div>
+                <div class="filter-tag">Sunset</div>
+                <div class="filter-tag">Flowers</div>
+                <div class="filter-tag">Animals</div>
+                <div class="filter-tag">Architecture</div>
+                <div class="filter-tag">Abstract</div>
+            </div>
+        </div>
+        
+        <div class="filter-section">
+            <div class="filter-title">Price Range</div>
+            <div class="price-range">
+                <input type="number" class="price-input" placeholder="Min $" min="0">
+                <span>to</span>
+                <input type="number" class="price-input" placeholder="Max $" min="0">
+                <button class="clear-filters">Clear All Filters</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="marketplace-grid">
+        <div class="art-card">
+            <div class="art-image">Artwork Image</div>
+            <div class="art-info">
+                <div class="art-title">Sunset Over Mountains</div>
+                <div class="art-artist">by Sarah Johnson</div>
+                <div class="art-price">$450</div>
+                <div class="art-tags">
+                    <span class="art-tag">Oil</span>
+                    <span class="art-tag">Landscape</span>
+                    <span class="art-tag">Warm</span>
+                </div>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+        
+        <div class="art-card">
+            <div class="art-image">Artwork Image</div>
+            <div class="art-info">
+                <div class="art-title">Ocean Waves</div>
+                <div class="art-artist">by Mike Chen</div>
+                <div class="art-price">$320</div>
+                <div class="art-tags">
+                    <span class="art-tag">Acrylic</span>
+                    <span class="art-tag">Beach</span>
+                    <span class="art-tag">Cool</span>
+                </div>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+        
+        <div class="art-card">
+            <div class="art-image">Artwork Image</div>
+            <div class="art-info">
+                <div class="art-title">Abstract Dreams</div>
+                <div class="art-artist">by Emma Davis</div>
+                <div class="art-price">$280</div>
+                <div class="art-tags">
+                    <span class="art-tag">Digital</span>
+                    <span class="art-tag">Abstract</span>
+                    <span class="art-tag">Vibrant</span>
+                </div>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+        
+        <div class="art-card">
+            <div class="art-image">Artwork Image</div>
+            <div class="art-info">
+                <div class="art-title">City Lights</div>
+                <div class="art-artist">by Alex Rodriguez</div>
+                <div class="art-price">$380</div>
+                <div class="art-tags">
+                    <span class="art-tag">Watercolor</span>
+                    <span class="art-tag">Urban</span>
+                    <span class="art-tag">Bright</span>
+                </div>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+        
+        <div class="art-card">
+            <div class="art-image">Artwork Image</div>
+            <div class="art-info">
+                <div class="art-title">Garden Flowers</div>
+                <div class="art-artist">by Lisa Wang</div>
+                <div class="art-price">$250</div>
+                <div class="art-tags">
+                    <span class="art-tag">Oil</span>
+                    <span class="art-tag">Flowers</span>
+                    <span class="art-tag">Pastel</span>
+                </div>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+        
+        <div class="art-card">
+            <div class="art-image">Artwork Image</div>
+            <div class="art-info">
+                <div class="art-title">Wild Horses</div>
+                <div class="art-artist">by Tom Brown</div>
+                <div class="art-price">$520</div>
+                <div class="art-tags">
+                    <span class="art-tag">Acrylic</span>
+                    <span class="art-tag">Animals</span>
+                    <span class="art-tag">Realistic</span>
+                </div>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+    </div>
+
+    <script>
+        // Filter functionality
+        const filterTags = document.querySelectorAll('.filter-tag');
+        const clearButton = document.querySelector('.clear-filters');
+        const searchInput = document.querySelector('.search-input');
+        
+        filterTags.forEach(tag => {
+            tag.addEventListener('click', function() {
+                this.classList.toggle('active');
+                filterArtworks();
+            });
+        });
+        
+        clearButton.addEventListener('click', function() {
+            filterTags.forEach(tag => tag.classList.remove('active'));
+            searchInput.value = '';
+            filterArtworks();
+        });
+        
+        searchInput.addEventListener('input', filterArtworks);
+        
+        function filterArtworks() {
+            const activeFilters = Array.from(document.querySelectorAll('.filter-tag.active')).map(tag => tag.textContent.toLowerCase());
+            const searchTerm = searchInput.value.toLowerCase();
+            const artCards = document.querySelectorAll('.art-card');
+            
+            artCards.forEach(card => {
+                const title = card.querySelector('.art-title').textContent.toLowerCase();
+                const artist = card.querySelector('.art-artist').textContent.toLowerCase();
+                const tags = Array.from(card.querySelectorAll('.art-tag')).map(tag => tag.textContent.toLowerCase());
+                
+                const matchesSearch = !searchTerm || title.includes(searchTerm) || artist.includes(searchTerm);
+                const matchesFilters = activeFilters.length === 0 || activeFilters.some(filter => 
+                    tags.includes(filter) || title.includes(filter) || artist.includes(filter)
+                );
+                
+                card.style.display = matchesSearch && matchesFilters ? 'block' : 'none';
+            });
+        }
+        
+        // Buy button functionality
+        document.querySelectorAll('.buy-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const card = this.closest('.art-card');
+                const title = card.querySelector('.art-title').textContent;
+                const price = card.querySelector('.art-price').textContent;
+                alert(`Added "${title}" (${price}) to cart!`);
+            });
+        });
+    </script>
+</body>
+</html>

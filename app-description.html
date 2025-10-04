@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Description - Musea</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body { background: linear-gradient(135deg, #f5f0e6, #efe7da); min-height: 100vh; margin: 0; font-family: 'Poppins', sans-serif; padding: 20px; }
+        .description-container { max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); }
+        .description-container h1 { font-family: 'Quivert','Great Vibes', cursive; font-size: 36px; color: #8b5e3c; text-align: center; margin-bottom: 30px; }
+        .description-text { font-size: 18px; line-height: 1.8; color: #333; margin-bottom: 40px; text-align: justify; }
+        .lets-go-container { text-align: right; }
+        .lets-go-btn { background: #8b5e3c; color: white; border: none; padding: 18px 36px; border-radius: 8px; font-size: 20px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(139, 94, 60, 0.3); }
+        .lets-go-btn:hover { background: #6b3f28; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(139, 94, 60, 0.4); }
+    </style>
+</head>
+<body>
+    <div class="scrapbook" style="min-height:100vh; display:flex; align-items:center; justify-content:center; position:relative;">
+        <!-- Scrapbook background layer -->
+        <div class="scrapbook-bg" style="position:absolute; inset:0; z-index:0; pointer-events:none;">
+            <div class="shape rect" style="top: 40px; left: 40px"></div>
+            <div class="shape circle" style="bottom: 60px; left: 120px"></div>
+            <div class="shape paper" style="top: 120px; right: 80px; transform: rotate(6deg)"></div>
+
+            <img src="assets/paintings/starry-night.jpg" class="clip lg" style="top:10%; left:15%; animation-delay:0s;" alt="Starry Night">
+            <img src="assets/paintings/water-lilies.jpg" class="clip md" style="top:50%; left:70%; animation-delay:2s; transform:rotate(3deg)" alt="Water Lilies">
+            <img src="assets/paintings/the-scream.jpg" class="clip md" style="top:70%; left:25%; animation-delay:4s; transform:rotate(-8deg)" alt="The Scream">
+            <img src="assets/paintings/mona-lisa.jpg" class="clip" style="top:15%; right:10%; width:160px; animation-delay:1s; transform:rotate(4deg)" alt="Mona Lisa">
+            <img src="assets/paintings/seurat.jpg" class="clip" style="bottom:12%; left:8%; width:170px; animation-delay:3s; transform:rotate(-6deg)" alt="Seurat">
+            <img src="assets/paintings/cezanne-apples.jpg" class="clip sm" style="top:22%; left:58%; animation-delay:2.5s; transform:rotate(5deg)" alt="Cezanne">
+            <img src="assets/paintings/vermeer-pearl.jpg" class="clip sm" style="top:30%; left:5%; animation-delay:1.7s; transform:rotate(-2deg)" alt="Vermeer">
+            <img src="assets/paintings/dali-memory.jpg" class="clip sm" style="bottom:18%; right:12%; animation-delay:2.1s; transform:rotate(6deg)" alt="Dali">
+            <img src="assets/paintings/wheatfield-crows.jpg" class="clip md" style="top:8%; left:38%; animation-delay:1.3s" alt="Wheatfield with Crows">
+            <img src="assets/paintings/klimt-adele.jpg" class="clip sm" style="top:68%; left:55%; animation-delay:3.4s; transform:rotate(-4deg)" alt="Klimt">
+        </div>
+        <!-- Main content layer -->
+        <div class="description-container" style="position:relative; z-index:1;">
+            <h1>Welcome to Musea</h1>
+            <div class="description-text">
+                <p>Musea is your creative sanctuary, a digital art marketplace where artists and art lovers come together to celebrate the beauty of human expression. Whether you're an emerging artist looking to share your vision with the world, or an art enthusiast seeking that perfect piece to complete your space, Musea provides the perfect platform for meaningful connections.</p>
+                <p>Our mission is to democratize art by making it accessible to everyone while ensuring artists receive fair compensation for their work. With intuitive tools for uploading, showcasing, and selling artwork, combined with powerful discovery features for buyers, Musea transforms the traditional art market into an inclusive, global community.</p>
+                <p>Join thousands of artists and collectors who have already discovered their creative home in Musea. Your artistic journey starts here.</p>
+            </div>
+            <div class="lets-go-container"><button class="lets-go-btn" id="letsGoBtn">Let's Go!</button></div>
+        </div>
+    </div>
+
+    <script>
+        function MapsToArtistMainChoice(){ window.location.href = 'artist-main-choice.html'; }
+        document.getElementById('letsGoBtn').addEventListener('click', MapsToArtistMainChoice);
+    </script>
+</body>
+</html>
+

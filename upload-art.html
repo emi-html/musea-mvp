@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Your Masterpiece - Musea</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; background: linear-gradient(135deg, #f5f0e6, #efe7da); font-family:'Poppins',sans-serif; padding:20px; }
+    .upload-card { width:100%; max-width:860px; background:#fff; border-radius:14px; box-shadow:0 16px 40px rgba(0,0,0,0.12); padding:28px; }
+    .upload-title { font-family:'Quivert','Great Vibes',cursive; color:#8b5e3c; font-size:34px; margin:0 0 8px; text-align:center; }
+    .upload-sub { text-align:center; color:#666; margin-bottom:22px; }
+    form { display:grid; grid-template-columns: 1fr 1fr; gap:18px; }
+    .full { grid-column: 1 / -1; }
+    label { display:block; font-weight:600; margin-bottom:8px; color:#333; }
+    input[type="text"], input[type="number"], textarea { width:100%; padding:12px 14px; border-radius:10px; border:2px solid #e5e5e5; background:#fff; color:#111; font-size:15px; box-sizing:border-box; }
+    input[type="file"] { display:none; }
+     .dropzone { width:100%; padding:200px 24px; min-height:500px; border:2px dashed #c9b8a9; border-radius:10px; background:#fffaf5; text-align:center; color:#6b3f28; cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:30px; }
+    .dropzone:hover { background:#fff2e7; }
+    .dz-sub { font-size:12px; color:#8b5e3c; }
+     .pick-btn { margin-top:160px; background:#8b5e3c; color:#fff; border:none; border-radius:8px; padding:16px 24px; font-weight:600; cursor:pointer; font-size:16px; }
+    textarea.small { min-height:80px; } textarea.medium { min-height:120px; } textarea.large { min-height:160px; }
+    .hint { color:#777; font-size:12px; margin-top:6px; }
+    .actions { display:flex; justify-content:flex-end; }
+    .submit-btn { background:#8b5e3c; color:#fff; border:none; border-radius:10px; padding:12px 18px; font-weight:700; cursor:pointer; box-shadow:0 6px 16px rgba(139,94,60,0.25); }
+    .submit-btn:hover { background:#6b3f28; }
+    .counter { font-size:12px; color:#666; text-align:right; margin-top:6px; }
+    .confirm-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.5); display:none; align-items:center; justify-content:center; padding:20px; }
+    .confirm-card { background:#fff; border-radius:14px; padding:28px; max-width:700px; width:100%; box-shadow:0 16px 40px rgba(0,0,0,0.2); text-align:center; }
+    .confirm-card h2 { font-family:'Quivert','Great Vibes',cursive; color:#8b5e3c; margin:0 0 10px; font-size:28px; }
+    .confirm-card p { color:#333; line-height:1.7; }
+    .ok-btn { margin-top:18px; background:#8b5e3c; color:#fff; border:none; border-radius:10px; padding:12px 18px; font-weight:700; cursor:pointer; }
+    .ok-btn:hover { background:#6b3f28; }
+    @media (max-width: 760px) { form { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="scrapbook" style="min-height:100vh; display:flex; align-items:center; justify-content:center; position:relative;">
+    <!-- Scrapbook background layer -->
+    <div class="scrapbook-bg" style="position:absolute; inset:0; z-index:0; pointer-events:none;">
+      <div class="shape rect" style="top: 40px; left: 40px"></div>
+      <div class="shape circle" style="bottom: 60px; left: 120px"></div>
+      <div class="shape paper" style="top: 120px; right: 80px; transform: rotate(6deg)"></div>
+
+      <img src="assets/paintings/starry-night.jpg" class="clip lg" style="top:10%; left:15%; animation-delay:0s;" alt="Starry Night">
+      <img src="assets/paintings/water-lilies.jpg" class="clip md" style="top:50%; left:70%; animation-delay:2s; transform:rotate(3deg)" alt="Water Lilies">
+      <img src="assets/paintings/the-scream.jpg" class="clip md" style="top:70%; left:25%; animation-delay:4s; transform:rotate(-8deg)" alt="The Scream">
+      <img src="assets/paintings/mona-lisa.jpg" class="clip" style="top:15%; right:10%; width:160px; animation-delay:1s; transform:rotate(4deg)" alt="Mona Lisa">
+      <img src="assets/paintings/seurat.jpg" class="clip" style="bottom:12%; left:8%; width:170px; animation-delay:3s; transform:rotate(-6deg)" alt="Seurat">
+      <img src="assets/paintings/cezanne-apples.jpg" class="clip sm" style="top:22%; left:58%; animation-delay:2.5s; transform:rotate(5deg)" alt="Cezanne">
+      <img src="assets/paintings/vermeer-pearl.jpg" class="clip sm" style="top:30%; left:5%; animation-delay:1.7s; transform:rotate(-2deg)" alt="Vermeer">
+      <img src="assets/paintings/dali-memory.jpg" class="clip sm" style="bottom:18%; right:12%; animation-delay:2.1s; transform:rotate(6deg)" alt="Dali">
+      <img src="assets/paintings/wheatfield-crows.jpg" class="clip md" style="top:8%; left:38%; animation-delay:1.3s" alt="Wheatfield with Crows">
+      <img src="assets/paintings/klimt-adele.jpg" class="clip sm" style="top:68%; left:55%; animation-delay:3.4s; transform:rotate(-4deg)" alt="Klimt">
+    </div>
+    <!-- Main content layer -->
+    <div class="upload-card" id="uploadCard" style="position:relative; z-index:1;">
+      <h1 class="upload-title">Upload Your Masterpiece</h1>
+      <div class="upload-sub">Share your work with collectors — we’ll guide pricing fairly.</div>
+      <form id="artForm" novalidate>
+        <div class="full">
+          <label>Artwork Files (1–10 images/videos)</label>
+          <div class="dropzone" id="dropzone">Click or drop files here
+            <div class="dz-sub">Accepted: images/videos • up to 10 files</div>
+            <div><button type="button" class="pick-btn" id="pickBtn">Choose files</button></div>
+          </div>
+          <input id="files" name="files" type="file" accept="image/*,video/*" multiple>
+          <div class="hint" id="fileHint">No files selected.</div>
+        </div>
+        <div><label for="name">Artwork Name</label><input id="name" name="name" type="text" required></div>
+        <div><label for="price">Price (USD)</label><input id="price" name="price" type="number" min="0" step="0.01" required></div>
+        <div class="full"><label for="about">About the Artist</label><textarea id="about" name="about" class="small" required placeholder="A short artist statement..."></textarea></div>
+        <div class="full"><label for="story">Story Behind the Art</label><textarea id="story" name="story" class="large" required placeholder="Tell the narrative behind this work (up to ~250 words)"></textarea><div class="counter"><span id="storyCount">0</span> / 250 words</div></div>
+        <div class="full"><label for="handles">Social Media Handles (optional)</label><input id="handles" name="handles" type="text" placeholder="e.g. @artist, https://instagram.com/you, @twitter"></div>
+        <div class="full"><label for="justification">Price Justification</label><textarea id="justification" name="justification" class="medium" required placeholder="Explain your pricing (materials, time, size, etc.)"></textarea></div>
+        <div class="full actions"><button class="submit-btn" type="submit">Submit Art</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="confirm-overlay" id="confirmOverlay">
+    <div class="confirm-card">
+      <h2>Thank You, Your Art is in Good Hands!</h2>
+      <p>We've received your submission and will carefully review the details and proposed price. We'll be in touch soon with a confirmed listing price that reflects the value of your work. Please check your email for updates.</p>
+      <button class="ok-btn" id="okBtn">Okay!</button>
+    </div>
+  </div>
+
+  <script>
+    function navigateBackToArtistMain(){ window.location.href = 'artist-main-choice.html'; }
+    function wordCount(text){ return text.trim().split(/\s+/).filter(Boolean).length; }
+    const dropzone=document.getElementById('dropzone'); const filesInput=document.getElementById('files'); const pickBtn=document.getElementById('pickBtn'); const fileHint=document.getElementById('fileHint'); let selectedFilesRef=[];
+    function updateFileHint(list){ const count=list.length; if(count===0){ fileHint.textContent='No files selected.'; return;} const names=Array.from(list).slice(0,3).map(f=>f.name).join(', '); fileHint.textContent=`${count} file(s) selected`+(names?`: ${names}${count>3?' …':''}`:''); }
+    dropzone.addEventListener('click', ()=> filesInput.click()); pickBtn.addEventListener('click', ()=> filesInput.click());
+    dropzone.addEventListener('dragover', (e)=>{ e.preventDefault(); dropzone.style.background='#fff2e7'; });
+    dropzone.addEventListener('dragleave', ()=>{ dropzone.style.background='#fffaf5'; });
+    dropzone.addEventListener('drop', (e)=>{ e.preventDefault(); dropzone.style.background='#fffaf5'; const items=Array.from(e.dataTransfer.files||[]); const dt=new DataTransfer(); items.slice(0,10).forEach(f=>dt.items.add(f)); filesInput.files=dt.files; selectedFilesRef=items.slice(0,10); updateFileHint(selectedFilesRef); });
+    filesInput.addEventListener('change', ()=>{ selectedFilesRef=Array.from(filesInput.files||[]); updateFileHint(selectedFilesRef); });
+    const storyEl=document.getElementById('story'); const storyCountEl=document.getElementById('storyCount'); storyEl.addEventListener('input', function(){ const count=wordCount(storyEl.value); storyCountEl.textContent=count; });
+     document.getElementById('artForm').addEventListener('submit', function(e){ 
+       e.preventDefault(); 
+       const filesInput = document.getElementById('files');
+       const name = document.getElementById('name').value.trim();
+       const about = document.getElementById('about').value.trim();
+       const story = document.getElementById('story').value.trim();
+       const handles = document.getElementById('handles').value.trim();
+       const price = document.getElementById('price').value.trim();
+       const justification = document.getElementById('justification').value.trim();
+
+       const selectedFiles = selectedFilesRef.length ? selectedFilesRef : Array.from(filesInput.files || []);
+       if (selectedFiles.length < 1 || selectedFiles.length > 10) {
+         alert('Please select between 1 and 10 files.');
+         return;
+       }
+       if (!name || !about || !story || !price || !justification) {
+         alert('Please fill all required fields.');
+         return;
+       }
+       if (wordCount(story) > 250) {
+         alert('Story Behind the Art should be around 250 words or fewer.');
+         return;
+       }
+
+       const payload = {
+         files: selectedFiles.map(f => f.name),
+         name, about, story,
+         handles: handles ? handles.split(',').map(s => s.trim()).filter(Boolean) : [],
+         price: Number(price),
+         justification
+       };
+
+       console.log('Submission payload:', payload);
+       document.getElementById('uploadCard').style.display = 'none';
+       document.getElementById('confirmOverlay').style.display = 'flex';
+     });
+     
+     document.getElementById('okBtn').addEventListener('click', function(){ 
+       window.location.href='marketplace.html'; 
+     });
+  </script>
+</body>
+</html>
+

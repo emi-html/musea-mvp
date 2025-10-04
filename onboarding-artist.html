@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Artist Onboarding · Musea</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="scrapbook" style="min-height:100vh; display:flex; align-items:center; justify-content:center; position:relative;">
+      <!-- Scrapbook background layer -->
+      <div class="scrapbook-bg" style="position:absolute; inset:0; z-index:0; pointer-events:none;">
+        <div class="shape rect" style="top: 40px; left: 40px"></div>
+        <div class="shape circle" style="bottom: 60px; left: 120px"></div>
+        <div class="shape paper" style="top: 120px; right: 80px; transform: rotate(6deg)"></div>
+
+        <img src="assets/paintings/starry-night.jpg" class="clip lg" style="top:10%; left:15%; animation-delay:0s;" alt="Starry Night">
+        <img src="assets/paintings/water-lilies.jpg" class="clip md" style="top:50%; left:70%; animation-delay:2s; transform:rotate(3deg)" alt="Water Lilies">
+        <img src="assets/paintings/the-scream.jpg" class="clip md" style="top:70%; left:25%; animation-delay:4s; transform:rotate(-8deg)" alt="The Scream">
+        <img src="assets/paintings/mona-lisa.jpg" class="clip" style="top:15%; right:10%; width:160px; animation-delay:1s; transform:rotate(4deg)" alt="Mona Lisa">
+        <img src="assets/paintings/seurat.jpg" class="clip" style="bottom:12%; left:8%; width:170px; animation-delay:3s; transform:rotate(-6deg)" alt="Seurat">
+        <img src="assets/paintings/cezanne-apples.jpg" class="clip sm" style="top:22%; left:58%; animation-delay:2.5s; transform:rotate(5deg)" alt="Cezanne">
+        <img src="assets/paintings/vermeer-pearl.jpg" class="clip sm" style="top:30%; left:5%; animation-delay:1.7s; transform:rotate(-2deg)" alt="Vermeer">
+        <img src="assets/paintings/dali-memory.jpg" class="clip sm" style="bottom:18%; right:12%; animation-delay:2.1s; transform:rotate(6deg)" alt="Dali">
+        <img src="assets/paintings/wheatfield-crows.jpg" class="clip md" style="top:8%; left:38%; animation-delay:1.3s" alt="Wheatfield with Crows">
+        <img src="assets/paintings/klimt-adele.jpg" class="clip sm" style="top:68%; left:55%; animation-delay:3.4s; transform:rotate(-4deg)" alt="Klimt">
+      </div>
+      <!-- Main content layer -->
+      <div class="center-screen" style="position:relative; z-index:1;">
+        <div class="card" style="width: 500px; text-align:center;">
+          <h1 class="handwritten" style="font-size:40px; color:#8b5e3c; margin-bottom:6px;">Welcome, Artist!</h1>
+          <p class="muted" style="margin-bottom: 18px;">Let's set up your profile.</p>
+          <div style="display:grid; gap:12px;">
+            <a class="btn label-btn full" href="artist-signup.html">Start Sign-Up</a>
+            <a class="btn full" href="app-description.html">Skip to App Description</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html>
+
